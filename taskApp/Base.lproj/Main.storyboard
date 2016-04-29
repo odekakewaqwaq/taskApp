@@ -21,23 +21,31 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LvV-hv-aoe">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableFooterView" contentMode="redraw" id="c3h-VG-bfd">
+                                    <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="BYZ-38-t0r" id="odM-xv-YUw"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Yju-6e-Eib" detailTextLabel="3fj-6I-koZ" style="IBUITableViewCellStyleSubtitle" id="GKi-aQ-Cuw">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GKi-aQ-Cuw" id="W5w-7b-qgr">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yju-6e-Eib">
-                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3fj-6I-koZ">
-                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,11 +77,21 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchDisplayController" destination="NxW-FI-UO2" id="LDl-Kd-E0g"/>
                         <outlet property="tableView" destination="LvV-hv-aoe" id="MrP-tG-k4B"/>
                         <segue destination="iqz-2y-kLO" kind="show" identifier="cellSegue" id="Vw7-0h-HCP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="NxW-FI-UO2">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="LX8-r2-rGK"/>
+                        <outlet property="searchBar" destination="c3h-VG-bfd" id="Vab-XJ-R7d"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="W2H-rd-HFs"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="IF6-NG-8B9"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="0Mz-Kk-HBJ"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1117" y="362"/>
         </scene>
@@ -160,6 +178,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryTextField" destination="JDQ-wh-DDb" id="LxY-lF-Npw"/>
                         <outlet property="contentsTextView" destination="F03-Mo-0iJ" id="UwQ-sV-SvP"/>
                         <outlet property="datePicker" destination="Rxl-tF-qML" id="J0u-gz-pLs"/>
                         <outlet property="titleTextField" destination="axB-hc-FVe" id="p94-QV-2ck"/>
