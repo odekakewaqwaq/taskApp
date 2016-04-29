@@ -9,15 +9,18 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate {
 
+
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     let realm = try! Realm()
-    let taskArray = try!Realm().objects(Task).sorted("date", ascending: false)
+    var taskArray = try!Realm().objects(Task).sorted("date", ascending: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -38,12 +41,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.title
+        let category = task.category
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
-        let dateString:String = formatter.stringFromDate(task.date)
-        cell.detailTextLabel?.text = dateString
+        let caption:String = category + " - " + formatter.stringFromDate(task.date)
+        cell.detailTextLabel?.text = caption
         
         return cell
     }
@@ -102,6 +106,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.reloadData()
     }
     
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        print("category = ")
+        taskArray = realm.objects(Task).filter("category BEGINSWITH '\(searchText)'")
+        tableView.reloadData()
+    }
+        //let searchWord = searchBar.text
+        //let categorizedTask = realm.objects(Task).filter("category = '\(searchWord)'"
     
 }
 
